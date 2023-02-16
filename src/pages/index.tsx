@@ -38,9 +38,13 @@ const Form = ({ host }: { host: string | null }) => {
   const [slug, setSlug] = useState("");
 
   const onSubmit = async (data: Data) => {
+    if (!host) {
+      return;
+    }
+
     setSlug(data.slug);
 
-    await fetch("http://localhost:3000/api/set-url", {
+    await fetch(`https://${host}api/set-url`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -50,10 +54,14 @@ const Form = ({ host }: { host: string | null }) => {
   };
 
   const validateSlug = async (value: string) => {
+    if (!host) {
+      return;
+    }
+
     const params = new URLSearchParams({ slug: value });
 
     const data = (await (
-      await fetch("http://localhost:3000/api/get-url?" + params.toString())
+      await fetch(`https://${host}api/get-url?` + params.toString())
     ).json()) as { url: string; slug: string };
 
     return !data.url;
