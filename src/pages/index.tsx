@@ -15,7 +15,7 @@ const Home = ({ host }: { host: string | null }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen flex-col items-center bg-black pt-16">
-        <h1 className="bg-gradient-to-r from-[#12c2e9] via-[#c471ed] to-[#f64f59] bg-clip-text text-6xl font-bold lowercase text-white text-transparent">
+        <h1 className="bg-gradient-to-r from-[#12c2e9] via-[#c471ed] to-[#f64f59] bg-clip-text text-5xl font-bold lowercase text-white text-transparent lg:text-6xl">
           Link shortener
         </h1>
         <Form host={host} />
@@ -64,21 +64,24 @@ const Form = ({ host }: { host: string | null }) => {
       <form
         // eslint-disable-next-line @typescript-eslint/no-misused-promises
         onSubmit={handleSubmit(onSubmit)}
-        className="mt-9 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
+        className="m-4 mt-8 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
       >
         <div className="sm:col-span-2">
           <div className="flex justify-between">
             <label
               htmlFor="url"
               className={
-                "block text-2xl font-medium text-white" +
+                "block text-lg font-medium text-white lg:text-2xl" +
                 (errors.url ? " text-red-500" : "")
               }
             >
               Your link
             </label>
             {errors.url && (
-              <span id="url-description" className="text-xl text-red-500">
+              <span
+                id="url-description"
+                className="text-md text-red-500 lg:text-xl"
+              >
                 Format has to be http[s]://example.com
               </span>
             )}
@@ -106,7 +109,7 @@ const Form = ({ host }: { host: string | null }) => {
             <label
               htmlFor="slug"
               className={
-                "block text-2xl font-medium text-white" +
+                "block text-lg font-medium text-white lg:text-2xl" +
                 (errors.slug ? " text-red-500" : "")
               }
             >
@@ -120,7 +123,7 @@ const Form = ({ host }: { host: string | null }) => {
           </div>
           <div
             className={
-              "mt-1 block w-full rounded-lg border-2 border-zinc-300 bg-white px-6 font-bold focus-within:border-blue-600 focus-within:shadow-sm sm:text-4xl [&>*]:py-4" +
+              "text-md mt-1 flex w-full rounded-lg border-2 border-zinc-300 bg-white font-bold focus-within:border-blue-600 focus-within:shadow-sm sm:text-xl lg:px-6 lg:text-4xl [&>*]:py-4" +
               (errors.slug
                 ? " border-red-500 focus-within:border-red-500 focus-within:ring-red-500"
                 : "")
@@ -134,7 +137,7 @@ const Form = ({ host }: { host: string | null }) => {
               id="slug"
               autoComplete="tel"
               aria-describedby="slug-description"
-              className="h-full font-bold focus:outline-none sm:text-4xl"
+              className="text flex-1 font-bold focus:outline-none"
             />
           </div>
         </div>
